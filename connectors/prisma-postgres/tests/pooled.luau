@@ -9,7 +9,7 @@ return {
 		end}
 	end,
 	run = function(exports)
-		assert(exports.execute == nil, "access defaults to read-only")
+		assert(exports.execute == nil, "access defaults to Read")
 		assert(exports.query("SELECT 1 AS ok").rows[1].ok == 1 and #requests == 1)
 		assert(requests[1].readOnly == true)
 	end,

@@ -1,7 +1,7 @@
 -- listTables reads information_schema read-only, filters by schema when asked, and keeps an empty result an array.
 return {
 	scenario = {publisher = {}, auth_method = "", auth_config = {}, config = {host = "db.prisma.io", username = "fixture-user", password = "fixture-password"}},
-	config = {access = "read-only"},
+	access = {data = "read"},
 	configure = function()
 		requests = {}
 		db = {query = function(request)

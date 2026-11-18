@@ -1,28 +1,29 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "name": "Prisma Postgres",
   "files": [
     "connector.luau"
   ],
   "icon": "icon.svg",
-  "config": {
-    "access": {
-      "default": "read-only",
-      "description": "Prisma Postgres credentials always have full access to the database. Read-only runs every statement in a read-only transaction, so agents cannot change data or schema.",
+  "access": [
+    {
+      "name": "data",
       "label": "Access",
-      "options": [
+      "description": "Prisma Postgres credentials always have full access to the database. Read runs every statement in a read-only transaction, so agents cannot change data or schema. Write also lets them insert, update and delete rows.",
+      "levels": [
         {
-          "label": "Read-only",
-          "value": "read-only"
+          "value": "read",
+          "label": "Read"
         },
         {
-          "label": "Read and write",
-          "value": "read-write"
+          "value": "write",
+          "label": "Write"
         }
       ],
-      "order": 1,
-      "type": "string"
-    },
+      "default": "read"
+    }
+  ],
+  "config": {
     "host": {
       "default": "db.prisma.io",
       "description": "Use the direct connection unless your plan's direct connection limit is reached.",
@@ -37,7 +38,7 @@
           "value": "pooled.db.prisma.io"
         }
       ],
-      "order": 2,
+      "order": 1,
       "required": true,
       "type": "string"
     },
@@ -45,14 +46,14 @@
       "description": "The part of your connection string between postgres:// and the first colon.",
       "label": "Username",
       "max_length": 256,
-      "order": 3,
+      "order": 2,
       "required": true,
       "type": "string"
     },
     "password": {
       "description": "The part of your connection string between the colon after the username and @db.prisma.io.",
       "label": "Password",
-      "order": 4,
+      "order": 3,
       "required": true,
       "type": "secret"
     }

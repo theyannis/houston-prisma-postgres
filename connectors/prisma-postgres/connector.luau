@@ -127,7 +127,7 @@ local function describeTable(name: string, schema: string?): {schema: string, ta
 end
 
 local exports: {[string]: any} = {query = query, listTables = listTables, describeTable = describeTable}
-if config.access == "read-write" then
+if houston.allows("data:write") then
 	exports.execute = execute
 end
 

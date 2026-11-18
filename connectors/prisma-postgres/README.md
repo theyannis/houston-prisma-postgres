@@ -16,9 +16,9 @@ your application's data.
 ## Make changes when you allow it
 
 Prisma Postgres credentials always have full access to the database, so Houston
-adds the safety. With **Read-only** access, every statement runs in a read-only
-transaction and data and schema cannot change. With **Read and write** access,
-agents can also insert, update and delete rows.
+adds the safety. With **Read** access, every statement runs in a read-only
+transaction and data and schema cannot change. With **Write** access, agents
+can also insert, update and delete rows.
 
 Schema changes are best made through Prisma Migrate in your project, so your
 `schema.prisma` stays in step with the database.

@@ -1,7 +1,7 @@
--- Read-only connections expose the read operations alone, and query always asks for a read-only statement.
+-- Read connections expose the read operations alone, and query always asks for a read-only statement.
 return {
 	scenario = {publisher = {}, auth_method = "", auth_config = {}, config = {host = "db.prisma.io", username = "fixture-user", password = "fixture-password"}},
-	config = {access = "read-only"},
+	access = {data = "read"},
 	configure = function()
 		requests = {}
 		db = {query = function(request)
@@ -10,7 +10,7 @@ return {
 		end}
 	end,
 	run = function(exports)
-		assert(exports.execute == nil, "read-only access must not expose execute")
+		assert(exports.execute == nil, "Read access must not expose execute")
 		assert(exports.query and exports.listTables and exports.describeTable, "read operations must be exported")
 		local result = exports.query('SELECT "id", "email" FROM "User" WHERE "role" = $1::"Role"', {"ADMIN"})
 		assert(result.rows[1].id == 7 and result.rows[1].email == "ada@example.com" and result.truncated == false)

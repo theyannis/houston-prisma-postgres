@@ -7,9 +7,9 @@ You need a Prisma Postgres database in the
    can revoke it on its own later.
 3. Copy the **direct** connection string. It looks like
    `postgres://USERNAME:PASSWORD@db.prisma.io:5432/postgres?sslmode=require`.
-4. In Houston, choose the access level. **Read-only** is recommended: every
-   Prisma Postgres credential can change data, so Houston's read-only mode is
-   what keeps agents from doing so.
+4. In Houston, choose the access level. **Read** is recommended: every Prisma
+   Postgres credential can change data, so Houston's Read level is what keeps
+   agents from doing so.
 5. Leave **Connection** on **Direct (recommended)**.
 6. Paste the **Username** (between `postgres://` and the first `:`) and the
    **Password** (between that `:` and `@db.prisma.io`).

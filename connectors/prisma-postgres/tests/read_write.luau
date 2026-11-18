@@ -1,7 +1,7 @@
--- Read-write connections add execute, which sends a statement allowed to write.
+-- Write connections add execute, which sends a statement allowed to write.
 return {
 	scenario = {publisher = {}, auth_method = "", auth_config = {}, config = {host = "db.prisma.io", username = "fixture-user", password = "fixture-password"}},
-	config = {access = "read-write"},
+	access = {data = "write"},
 	configure = function()
 		requests = {}
 		db = {query = function(request)
@@ -19,7 +19,7 @@ return {
 		assert(#request.params == 1 and request.params[1] == 42)
 
 		exports.query('SELECT count(*) AS n FROM "Task"')
-		assert(requests[2].readOnly == true, "query stays read-only on read-write connections")
+		assert(requests[2].readOnly == true, "query stays read-only on Write connections")
 
 		local ok = pcall(exports.execute, "")
 		assert(not ok and #requests == 2)
